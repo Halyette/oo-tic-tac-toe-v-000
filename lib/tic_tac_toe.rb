@@ -62,11 +62,45 @@ end
     turn_count % 2 == 0 ? "X" : "O"
   end
   
-  def won?
-WIN_COMBINATIONS.any? do |no_win|
- if board[no_win[0]] == board[no_win[1]] && board[no_win[1]] == board[no_win[2]] && position_taken?(no_win[1])
-return no_win
+ def won?
+WIN_COMBINATIONS.any? do |win_plz|
+ if board[win_plz[0]] == board[win_plz[1]] && board[win_plz[1]] == board[win_plz[2]] && position_taken?(win_plz[1])
+return win_plz
  end
 end
- 
+end
+
+
+
+def full?
+board.none? do |filled|
+  filled == " " || filled.nil?
+  end
+ end
+
+def draw?
+full? && !won?
+end
+
+def over?
+  won? || draw?
+end
+
+def winner
+  if won?
+  board[won?[0]]
+ end
+end
+
+def play
+until over?
+  turn
+  end
+
+  if draw? == true
+    puts "Cat's Game!"
+ else won?
+    puts "Congratulations #{winner}!"
+  end
+end
 end
