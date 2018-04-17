@@ -64,7 +64,7 @@ end
   
   def won?
 WIN_COMBINATIONS.any? do |no_win|
- if board[no_win[0]] == board[no_win[3]] && board[no_win[5]] == board[no_win[2]] && position_taken?(no_win[1])
+ if board[no_win[0]] == board[no_win[1]] && board[no_win[1]] == board[no_win[2]] && position_taken?(no_win[1])
 return no_win
  end
 end
